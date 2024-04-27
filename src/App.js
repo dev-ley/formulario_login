@@ -1,9 +1,10 @@
-import FormularioLogin from './Components/FormularioLogin';
+import { Outlet } from "react-router-dom";
+
 
 function App() {
   return (
     <>
-      <FormularioLogin />
+      <Outlet />
     </>
   )
 }
