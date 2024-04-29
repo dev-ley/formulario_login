@@ -6,8 +6,8 @@ import { createBrowserRouter, RouterProvider,  } from "react-router-dom";
 import App from "./App"
 import Home from "./routes/Home";
 import Registro from "./routes/Registro";
+import CadastroSucess from './routes/CadastroSucess';
 import Welcome from './routes/Welcome';
-
 import ErrorPage from "./routes/ErrorPage";
 
 // ROTAS //
@@ -29,6 +29,10 @@ const router = createBrowserRouter ([
     {
       path:"/welcome",
       element: <Welcome />,
+    },
+    {
+      path:"/cadastrosucess",
+      element: <CadastroSucess />,
     },
   ]
 },
