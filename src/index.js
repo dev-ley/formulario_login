@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+// CONTEXT 
+
 
 // IMPORT ESTRUTURA DE ROTAS //
 import { createBrowserRouter, RouterProvider,  } from "react-router-dom";

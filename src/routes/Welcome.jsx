@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
 const ContainerFlex = styled.div`
   display: flex;
   justify-content: center;
@@ -10,7 +9,6 @@ const ContainerFlex = styled.div`
   background-color: black;
   color: #fff;
 `
-
 
 const Welcome = () => {
     return (

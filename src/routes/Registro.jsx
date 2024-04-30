@@ -2,8 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useState } from "react";
 import styled from 'styled-components'
-import { IoMdPerson, IoIosUnlock } from "react-icons/io";
 import TextoHeader from '../Components/TextoHeader';
+import InputButton from '../Components/ComponentsForm/InputButton';
+import InputUser from '../Components/ComponentsForm/InputUser';
+import InputPassword from '../Components/ComponentsForm/InputPassword';
+import InputConfirma from '../Components/ComponentsForm/InputConfirma';
 
 const ContainerForm =styled.div`
  background-image: url('/assets/bg-naruto.jpg');
@@ -16,7 +19,6 @@ const ContainerForm =styled.div`
  height: 100vh;
 `;
 
-
 const Form = styled.form`
  background-color: rgba(128, 128, 128, 0);
  backdrop-filter: blur(4px);
@@ -27,53 +29,12 @@ const Form = styled.form`
  padding: 30px;
 `; 
 
-const Input = styled.input`
- width: 100%;
- position: relative;
- padding: 10px;
- margin: 3px 0;
-`;
-
-const IconLock = styled(IoIosUnlock)`
- position: absolute;
- right: 40px;
- transform: translateY(14px);
-`;
-
-const IconUser = styled(IoMdPerson)`
- position: absolute;
- right: 40px;
- transform: translateY(14px);
-`;
-
-const ContainerFlex = styled.div`
- display: flex;
- justify-content: space-around;
- gap:40px;
- margin: 10px 0;
-`;
-
-const Button = styled.button`
-   padding: 10px;
-   margin-bottom:10px;
-   font-weight: bold;
-   background-color: rgba(0, 0, 0, 0.237);
-   color: #fff;
-   cursor: pointer;
-   &:hover {
-     background-color: rgba(0, 0, 0, 0.605);
-   }
-`;
-
-
 const Registro = () => {
 
   const navigate = useNavigate();
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [confirma, setConfirma] = useState('');
-
-  //const [usuarios, setUsuarios] = useState([]);  // IDÉIA PARA CADASTRO!
   
   const userForm = (e) => {
       e.preventDefault();
@@ -86,34 +47,26 @@ const Registro = () => {
       } else {
         alert('Senhas diferentes ou campos vazios!')
       }
-     
   };
-
 
   return (
     <div>
       <ContainerForm>
-          <Form>
+          <Form onSubmit={userForm}>
              <TextoHeader texto='Registro' />
              <div>
               <label htmlFor="usuario">Usuario</label>
-               <Input type="text" placeholder="Digite um nome" id='usuario' name='usuario' value={user} onChange={(e) => setUser(e.target.value) }/>
-               <IconUser />
+               <InputUser type="text" placeholder="Digite um nome" id='usuario' name='usuario' value={user} changeName={setUser}/>
              </div>
              <div>
                <label htmlFor="senha">Senha</label>
-               <Input type="password" placeholder="Digite a Senha" id='senha' name='senha' value={password} onChange={(e) => setPassword(e.target.value)}/>
-               <IconLock />
+               <InputPassword type="password" placeholder="Digite a Senha" id='senha' name='senha' value={password} changePassword={setPassword}/>
              </div>
              <div>
                <label htmlFor="confirmar">Confirme a Senha</label>
-               <Input type="password" placeholder="Digite a Senha" id='confirmar' name='confirmar' value={confirma} onChange={(e) => setConfirma(e.target.value)}/>
-               <IconLock />
+               <InputConfirma type="password" placeholder="Digite a Senha" id='confirmar' name='confirmar' value={confirma} changeConfirma={setConfirma}/>
              </div>
-             <ContainerFlex>
-               
-             </ContainerFlex>
-             <Button  type="submit" onClick={userForm}>Cadastrar!</Button>
+             <InputButton  type="submit" texto='Cadastrar!' />
          </Form>
        </ContainerForm>
     </div>
