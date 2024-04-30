@@ -32,7 +32,7 @@ const BtnLink = styled(Link)`
   &:hover {
 
     background-color: #ffa6004b;
-    color: #000;
+    color: #ff9100;
 
   }
 `

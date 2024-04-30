@@ -8,15 +8,21 @@ const ContainerForm =styled.div`
  justify-content: center;
  align-items: center;
  height: 100vh;
+
+
 `;
 
 const CardSucess = styled.div`
- width: 300px;
+ max-width: 300px;
  height: 300px;
  display: flex;
  justify-content: center;
  align-items: center;
  gap: 10px;
+ @media (max-width: 768px) {
+    /* Estilos para dispositivos com largura máxima de 768px (tablets e smartphones) */
+    flex-direction: column; /* Altera para coluna */
+ }
 `;
 
 const ImgCard = styled.img`
