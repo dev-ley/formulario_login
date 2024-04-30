@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from "react";
 import styled from 'styled-components'
 import { IoMdPerson, IoIosUnlock } from "react-icons/io";
+import TextoHeader from '../Components/TextoHeader';
 
 const ContainerForm =styled.div`
  background-image: url('/assets/bg-naruto.jpg');
@@ -25,12 +26,6 @@ const Form = styled.form`
  flex-direction: column;
  padding: 30px;
 `; 
-
-const Titulo = styled.h1`
- color: #fff;
- text-shadow: 2px 2px 2px black;
- margin-bottom: 15px;
-`;
 
 const Input = styled.input`
  width: 100%;
@@ -99,7 +94,7 @@ const Registro = () => {
     <div>
       <ContainerForm>
           <Form>
-             <Titulo>Registro</Titulo>
+             <TextoHeader texto='Registro' />
              <div>
               <label htmlFor="usuario">Usuario</label>
                <Input type="text" placeholder="Digite um nome" id='usuario' name='usuario' value={user} onChange={(e) => setUser(e.target.value) }/>

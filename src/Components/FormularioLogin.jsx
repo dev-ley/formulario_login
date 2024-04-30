@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled from 'styled-components'
 import { IoMdPerson, IoIosUnlock } from "react-icons/io";
 import { Link, useNavigate } from 'react-router-dom';
+import TextoHeader from './TextoHeader';
 
 const LinkRegistro = styled(Link)`
    color: #fff;
@@ -12,7 +13,7 @@ const LinkRegistro = styled(Link)`
    &:hover {
    text-decoration: underline;
    color: grey;
- }
+ };
 `
 
 const Form = styled.form`
@@ -24,12 +25,6 @@ const Form = styled.form`
  flex-direction: column;
  padding: 30px;
 `; 
-
-const Titulo = styled.h1`
- color: #fff;
- text-shadow: 2px 2px 2px black;
- margin-bottom: 15px;
-`;
 
 const Input = styled.input`
  width: 100%;
@@ -74,22 +69,20 @@ const Ancora = styled.a`
 `;
 
 const Button = styled.button`
-   padding: 10px;
-   margin-bottom:10px;
-   font-weight: bold;
-   background-color: rgba(0, 0, 0, 0.237);
-   color: #fff;
-   cursor: pointer;
-   &:hover {
-     background-color: rgba(0, 0, 0, 0.605);
-   }
+  padding: 10px;
+  margin-bottom:10px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.237);
+  color: #fff;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.605);
+  }
 `;
 
 const Text = styled.p`
  color: #fff;
  text-shadow: 2px 1px 3px black;
-
-
 `;
 
 const LabelCheck = styled.label`
@@ -116,7 +109,7 @@ const FormularioLogin = () => {
   return (
     <div>
        <Form>
-             <Titulo>Acesso ao Sistema</Titulo>
+             <TextoHeader texto='Acesso ao Sistema'/>
              <div>
                <Input type="text" placeholder="Digite seu Login" value={user} onChange={(e) => setUser(e.target.value) }/>
                <IconUser />

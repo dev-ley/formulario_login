@@ -43,7 +43,6 @@ const LinkLogin =  styled(Link)`
         background-color: #fff;
     }
     
-
 `
 const Texto = styled.h1`
     color: #fff;
