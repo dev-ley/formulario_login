@@ -8,6 +8,7 @@ import InputButton from '../Components/ComponentsForm/InputButton';
 import InputUser from '../Components/ComponentsForm/InputUser';
 import InputPassword from '../Components/ComponentsForm/InputPassword';
 import InputConfirma from '../Components/ComponentsForm/InputConfirma';
+import InputEmail from '../Components/ComponentsForm/InputEmail';
 
 const ContainerForm =styled.div`
  background-image: url('/assets/bg-naruto.jpg');
@@ -22,8 +23,7 @@ const ContainerForm =styled.div`
 
 const MensagemErro = styled.p`
   color: red;
-  text-shadow: 1px 1px 1px #000000 
-
+  text-shadow: 1px 1px 1px black;
 `
 
 const Form = styled.form`
@@ -39,11 +39,12 @@ const Form = styled.form`
 const Registro = () => {
 
   const navigate = useNavigate();
-  const { setUser, setPassword } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [userRegistro, setUserRegistro] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [passwordRegistro, setPasswordRegistro] = useState('');
   const [confirma, setConfirma] = useState('');
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
   
   const userForm = (e) => {
     e.preventDefault();
@@ -53,10 +54,12 @@ const Registro = () => {
         throw new Error('Senhas diferentes ou campos vazios!');
       }
   
-      // Se chegou até aqui, os dados estão corretos
-      setUser(prevUsers => [...prevUsers, userRegistro]);
-      setPassword(PrevPasswords => [...PrevPasswords, passwordRegistro]);
+      setUser([...user, {
+        username:userRegistro,
+        password:passwordRegistro
+        }]);
       navigate("/cadastrosucess");
+
     } catch (error) {
       setError(error.message);
       setTimeout(() => {
@@ -72,11 +75,14 @@ const Registro = () => {
              <TextoHeader texto='Registro' />
              <div>
               <label htmlFor="usuario">Usuario</label>
-
                <InputUser type="text"  placeholder="Digite um nome" id='usuario' name='usuario' value={userRegistro} changeName={setUserRegistro}/>
              </div>
              <div>
-               <label htmlFor="senha">Senha </label>
+              <label htmlFor="email">Email</label>
+               <InputEmail type="email"  placeholder="Digite um Email" id='email' name='email' value={userEmail} changeName={setUserEmail}/>
+             </div>
+             <div>
+               <label htmlFor="senha">Senha</label>
                <InputPassword type="password"  placeholder="Digite a Senha" id='senha' name='senha' value={passwordRegistro} changePassword={setPasswordRegistro}/>
              </div>
              <div>

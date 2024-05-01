@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom';
 import TextoHeader from './TextoHeader';
@@ -48,20 +47,19 @@ const P = styled.p`
 const FormularioLogin = () => {
 
  const navigate = useNavigate();
- const {user, password, userLogin, setUserLogin } = useContext(UserContext);
+ const {user, userLogin, setUserLogin } = useContext(UserContext);
  const [passwordLogin, setPasswordLogin] = useState('');
  
  const userForm = (e) => {
-     e.preventDefault();
-     const userIndex = user.indexOf(userLogin);
-     if (userIndex !== -1 && passwordLogin === password[userIndex]) {
-      navigate("/welcome");
-     }
-    else {
-      alert('Usuario não cadastrado')
-    }
- }
- 
+  e.preventDefault();
+  // Verifica se o usuário e senha correspondem a algum registro
+  const foundUser = user.find(u => u.username === userLogin && u.password === passwordLogin);
+  if (foundUser) {
+   navigate("/welcome");
+  } else {
+   alert('Usuário ou senha incorretos');
+  }
+}
   return (
     <div>
        <Form onSubmit={userForm}>
@@ -75,14 +73,18 @@ const FormularioLogin = () => {
              <ContainerFlex>
               <InputCheckBox texto='Lembrar de mim'/>
               <div>
-                <LinkStyled to="/">Esqueceu a Senha?</LinkStyled>
+                <LinkStyled to="/esqueceusenha">Esqueceu a Senha?</LinkStyled>
               </div>
              </ContainerFlex>
                 <InputButton  type='submit' texto='Login'/>
              <P>Nao tem uma conta? <LinkStyled to="/registro">Registrar</LinkStyled></P>
-                {user.map((u, index) => (
-                <P key={u}>Usuários Cadastradros: {u}</P>
-              ))}
+                {user.length > 0 ? (
+                      user.map((u, index) => 
+                      <P key={index}>Usuários Cadastradros: {u.username}</P>)
+                    ) : (
+                      <P>Nenhum usuario cadastrado!</P>
+                )}
+
          </Form>
     </div>
   )

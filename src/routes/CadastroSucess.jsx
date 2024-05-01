@@ -49,7 +49,7 @@ const Texto = styled.h1`
 const CadastroSucess = () => {
 
   const { user } = useContext(UserContext)
-  const ultimoNome = user.length > 0 ? user[user.length - 1] : '';
+  const ultimoNome = user.length > 0 ? user[user.length - 1].username : '';
 
   return (
     <ContainerForm>

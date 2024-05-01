@@ -11,6 +11,8 @@ import Registro from "./routes/Registro";
 import CadastroSucess from './routes/CadastroSucess';
 import Welcome from './routes/Welcome';
 import ErrorPage from "./routes/ErrorPage";
+import EsqueceuSenha from "./routes/EsqueceuSenha";
+
 
 // ROTAS //
 const router = createBrowserRouter ([
@@ -35,6 +37,10 @@ const router = createBrowserRouter ([
     {
       path:"/cadastrosucess",
       element: <CadastroSucess />,
+    },
+    {
+      path:"/esqueceusenha",
+      element: <EsqueceuSenha />,
     },
   ]
 },
