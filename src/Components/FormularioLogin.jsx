@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom';
 import TextoHeader from './TextoHeader';
@@ -7,9 +7,10 @@ import InputUser from './ComponentsForm/InputUser';
 import InputPassword from './ComponentsForm/InputPassword';
 import InputCheckBox from './ComponentsForm/InputCheckBox';
 import InputButton from './ComponentsForm/InputButton';
+import { UserContext } from '../Context/UserContext';
 
 const LinkStyled = styled(Link)`
-  color: #fff;
+  color: #ffa202;
   text-decoration: none;
   margin: 15px 0px 0;
   text-shadow: 2px 1px 3px black;
@@ -47,14 +48,18 @@ const P = styled.p`
 const FormularioLogin = () => {
 
  const navigate = useNavigate();
- const [user, setUser] = useState('');
- const [password, setPassword] = useState('');
+ const {user, password, userLogin, setUserLogin } = useContext(UserContext);
+ const [passwordLogin, setPasswordLogin] = useState('');
  
  const userForm = (e) => {
      e.preventDefault();
-     setUser('');
-     setPassword('');
-     navigate("/welcome");
+     const userIndex = user.indexOf(userLogin);
+     if (userIndex !== -1 && passwordLogin === password[userIndex]) {
+      navigate("/welcome");
+     }
+    else {
+      alert('Usuario não cadastrado')
+    }
  }
  
   return (
@@ -62,10 +67,10 @@ const FormularioLogin = () => {
        <Form onSubmit={userForm}>
              <TextoHeader texto='Acesso ao Sistema'/>
              <div>
-               <InputUser type="text" placeholder="Digite seu Login" value={user} changeName={setUser}/>
+              <InputUser type="text" placeholder="Digite seu Login" value={userLogin} changeName={setUserLogin}/>
              </div>
              <div>
-               <InputPassword type="password" placeholder="Digite sua Senha" value={password} changePassword={setPassword}/>
+               <InputPassword type="password" placeholder="Digite sua Senha" value={passwordLogin} changePassword={setPasswordLogin}/>
              </div>
              <ContainerFlex>
               <InputCheckBox texto='Lembrar de mim'/>
@@ -73,8 +78,11 @@ const FormularioLogin = () => {
                 <LinkStyled to="/">Esqueceu a Senha?</LinkStyled>
               </div>
              </ContainerFlex>
-                <InputButton type='submit' texto='Login'/>
+                <InputButton  type='submit' texto='Login'/>
              <P>Nao tem uma conta? <LinkStyled to="/registro">Registrar</LinkStyled></P>
+                {user.map((u, index) => (
+                <P key={u}>Usuários Cadastradros: {u}</P>
+              ))}
          </Form>
     </div>
   )

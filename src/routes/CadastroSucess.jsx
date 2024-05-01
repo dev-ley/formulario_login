@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { UserContext } from '../Context/UserContext';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 
@@ -8,8 +9,6 @@ const ContainerForm =styled.div`
  justify-content: center;
  align-items: center;
  height: 100vh;
-
-
 `;
 
 const CardSucess = styled.div`
@@ -27,7 +26,6 @@ const CardSucess = styled.div`
 
 const ImgCard = styled.img`
     width: 100%;
-
 `;
 
 const LinkLogin =  styled(Link)`
@@ -42,19 +40,21 @@ const LinkLogin =  styled(Link)`
         color: black;
         background-color: #fff;
     }
-    
 `
 const Texto = styled.h1`
     color: #fff;
     text-align: center;
 
 `
-
 const CadastroSucess = () => {
+
+  const { user } = useContext(UserContext)
+  const ultimoNome = user.length > 0 ? user[user.length - 1] : '';
+
   return (
     <ContainerForm>
       <CardSucess>
-      <Texto> Cadastro Concluido!</Texto>
+      <Texto> Cadastro Concluido! {ultimoNome} Divirta-se!</Texto>
       <LinkLogin to="/">Login</LinkLogin>
         <ImgCard src="/assets/sucess.png" alt="Naruto Sucess"></ImgCard>
       </CardSucess>

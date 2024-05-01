@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { UserContext } from '../Context/UserContext'
 
 const ContainerFlex = styled.div`
   display: flex;
@@ -11,9 +12,12 @@ const ContainerFlex = styled.div`
 `
 
 const Welcome = () => {
+
+  const { userLogin } = useContext(UserContext)
+
     return (
         <ContainerFlex>
-          <h1>Bem Vindo!!</h1>
+          <h1>Bem Vindo {userLogin} !!</h1>
         </ContainerFlex>
       )
 }

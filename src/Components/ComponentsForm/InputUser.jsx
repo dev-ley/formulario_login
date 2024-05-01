@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { IoMdPerson } from "react-icons/io";
 
+
 const InputStyled = styled.input`
  width: 100%;
  position: relative;
@@ -18,7 +19,7 @@ const IconUser = styled(IoMdPerson)`
 const InputUser = ({type, placeholder, value, changeName}) => {
   return (
     <>
-      <InputStyled type={type} placeholder={placeholder} valye={value} onChange={(e) => changeName(e.target.value)}/>
+      <InputStyled type={type} placeholder={placeholder} value={value} onChange={(e) => changeName(e.target.value)}/>
       <IconUser />
     </>
     )

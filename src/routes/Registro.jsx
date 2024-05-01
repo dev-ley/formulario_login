@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from '../Context/UserContext'
 import styled from 'styled-components'
 import TextoHeader from '../Components/TextoHeader';
 import InputButton from '../Components/ComponentsForm/InputButton';
@@ -32,18 +33,18 @@ const Form = styled.form`
 const Registro = () => {
 
   const navigate = useNavigate();
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
+  const { setUser, setPassword } = useContext(UserContext);
+  const [userRegistro, setUserRegistro] = useState('');
+  const [passwordRegistro, setPasswordRegistro] = useState('');
   const [confirma, setConfirma] = useState('');
   
   const userForm = (e) => {
       e.preventDefault();
-      if (user !== '' && password === confirma) {
-        setUser('');
-        setPassword('');
-        setConfirma('');
+      if (userRegistro !== '' && passwordRegistro === confirma) {
+        setUser(prevUsers => [...prevUsers, userRegistro]);
+        setPassword(PrevPasswords => [...PrevPasswords, passwordRegistro]);
         navigate("/cadastrosucess");
-
+        
       } else {
         alert('Senhas diferentes ou campos vazios!')
       }
@@ -56,11 +57,11 @@ const Registro = () => {
              <TextoHeader texto='Registro' />
              <div>
               <label htmlFor="usuario">Usuario</label>
-               <InputUser type="text" placeholder="Digite um nome" id='usuario' name='usuario' value={user} changeName={setUser}/>
+               <InputUser type="text" placeholder="Digite um nome" id='usuario' name='usuario' value={userRegistro} changeName={setUserRegistro}/>
              </div>
              <div>
-               <label htmlFor="senha">Senha</label>
-               <InputPassword type="password" placeholder="Digite a Senha" id='senha' name='senha' value={password} changePassword={setPassword}/>
+               <label htmlFor="senha">Senha </label>
+               <InputPassword type="password" placeholder="Digite a Senha" id='senha' name='senha' value={passwordRegistro} changePassword={setPasswordRegistro}/>
              </div>
              <div>
                <label htmlFor="confirmar">Confirme a Senha</label>
