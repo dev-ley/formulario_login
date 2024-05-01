@@ -19,7 +19,7 @@ const IconLock = styled(IoIosUnlock)`
 const InputPassword = ({type, placeholder, value, changePassword}) => {
   return (
     <>
-      <InputStyled type={type} placeholder={placeholder} valye={value}  onChange={(e) => changePassword(e.target.value)}/>
+      <InputStyled required type={type} placeholder={placeholder} valye={value}  onChange={(e) => changePassword(e.target.value)}/>
       <IconLock />
     </>
     )

@@ -57,15 +57,15 @@ const Registro = () => {
              <TextoHeader texto='Registro' />
              <div>
               <label htmlFor="usuario">Usuario</label>
-               <InputUser type="text" placeholder="Digite um nome" id='usuario' name='usuario' value={userRegistro} changeName={setUserRegistro}/>
+               <InputUser type="text"  placeholder="Digite um nome" id='usuario' name='usuario' value={userRegistro} changeName={setUserRegistro}/>
              </div>
              <div>
                <label htmlFor="senha">Senha </label>
-               <InputPassword type="password" placeholder="Digite a Senha" id='senha' name='senha' value={passwordRegistro} changePassword={setPasswordRegistro}/>
+               <InputPassword type="password"  placeholder="Digite a Senha" id='senha' name='senha' value={passwordRegistro} changePassword={setPasswordRegistro}/>
              </div>
              <div>
                <label htmlFor="confirmar">Confirme a Senha</label>
-               <InputConfirma type="password" placeholder="Digite a Senha" id='confirmar' name='confirmar' value={confirma} changeConfirma={setConfirma}/>
+               <InputConfirma type="password"  placeholder="Digite a Senha" id='confirmar' name='confirmar' value={confirma} changeConfirma={setConfirma}/>
              </div>
              <InputButton  type="submit" texto='Cadastrar!' />
          </Form>

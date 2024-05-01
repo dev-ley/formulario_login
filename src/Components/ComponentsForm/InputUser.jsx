@@ -19,7 +19,7 @@ const IconUser = styled(IoMdPerson)`
 const InputUser = ({type, placeholder, value, changeName}) => {
   return (
     <>
-      <InputStyled type={type} placeholder={placeholder} value={value} onChange={(e) => changeName(e.target.value)}/>
+      <InputStyled required type={type} placeholder={placeholder} value={value} onChange={(e) => changeName(e.target.value)}/>
       <IconUser />
     </>
     )
