@@ -20,6 +20,12 @@ const ContainerForm =styled.div`
  height: 100vh;
 `;
 
+const MensagemErro = styled.p`
+  color: red;
+  text-shadow: 1px 1px 1px #000000 
+
+`
+
 const Form = styled.form`
  background-color: rgba(128, 128, 128, 0);
  backdrop-filter: blur(4px);
@@ -37,19 +43,28 @@ const Registro = () => {
   const [userRegistro, setUserRegistro] = useState('');
   const [passwordRegistro, setPasswordRegistro] = useState('');
   const [confirma, setConfirma] = useState('');
+  const [error, setError] = useState(null)
   
   const userForm = (e) => {
-      e.preventDefault();
-      if (userRegistro !== '' && passwordRegistro === confirma) {
-        setUser(prevUsers => [...prevUsers, userRegistro]);
-        setPassword(PrevPasswords => [...PrevPasswords, passwordRegistro]);
-        navigate("/cadastrosucess");
-        
-      } else {
-        alert('Senhas diferentes ou campos vazios!')
+    e.preventDefault();
+  
+    try {
+      if (userRegistro === '' || passwordRegistro !== confirma) {
+        throw new Error('Senhas diferentes ou campos vazios!');
       }
+  
+      // Se chegou até aqui, os dados estão corretos
+      setUser(prevUsers => [...prevUsers, userRegistro]);
+      setPassword(PrevPasswords => [...PrevPasswords, passwordRegistro]);
+      navigate("/cadastrosucess");
+    } catch (error) {
+      setError(error.message);
+      setTimeout(() => {
+        setError(null)
+      }, 3000);
+    }
   };
-
+  
   return (
     <div>
       <ContainerForm>
@@ -57,6 +72,7 @@ const Registro = () => {
              <TextoHeader texto='Registro' />
              <div>
               <label htmlFor="usuario">Usuario</label>
+
                <InputUser type="text"  placeholder="Digite um nome" id='usuario' name='usuario' value={userRegistro} changeName={setUserRegistro}/>
              </div>
              <div>
@@ -68,6 +84,10 @@ const Registro = () => {
                <InputConfirma type="password"  placeholder="Digite a Senha" id='confirmar' name='confirmar' value={confirma} changeConfirma={setConfirma}/>
              </div>
              <InputButton  type="submit" texto='Cadastrar!' />
+             {error &&  (
+              <MensagemErro>{error}</MensagemErro>
+
+             )}
          </Form>
        </ContainerForm>
     </div>
