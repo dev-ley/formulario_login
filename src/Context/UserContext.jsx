@@ -9,11 +9,7 @@ export const UserProvider = ({children}) => {
             email: 'wesley@teste.com', 
             password: '123' 
         },
-        { 
-            username: 'Juliana', 
-            email: 'ju@teste.com', 
-            password: '222' 
-        },
+
     ])
 
     const [userLogin, setUserLogin] = useState('')
