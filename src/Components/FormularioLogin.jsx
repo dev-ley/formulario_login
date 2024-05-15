@@ -21,7 +21,6 @@ const LinkStyled = styled(Link)`
   }
 `;
 
-
 const Form = styled.form`
   background-color: rgba(128, 128, 128, 0);
   backdrop-filter: blur(4px);
@@ -78,13 +77,7 @@ const FormularioLogin = () => {
              </ContainerFlex>
                 <InputButton  type='submit' texto='Login'/>
              <P>Nao tem uma conta? <LinkStyled to="/registro">Registrar</LinkStyled></P>
-                {user.length > 0 ? (
-                      user.map((u, index) => 
-                      <P key={index}>Usuários Cadastradros: {u.username}</P>)
-                    ) : (
-                      <P>Nenhum usuario cadastrado!</P>
-                )}
-
+        
          </Form>
     </div>
   )

@@ -45,8 +45,28 @@ const Registro = () => {
   const [passwordRegistro, setPasswordRegistro] = useState('');
   const [confirma, setConfirma] = useState('');
   const [error, setError] = useState(null);
+
+  const registrarUsuario = async (userData) => {
+    try {
+      const response = await fetch('http://localhost:4000/Usuarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
   
-  const userForm = (e) => {
+      if (!response.ok) {
+        throw new Error('Erro ao cadastrar usuário');
+      }
+  
+      return response.json(); // Retornar os dados do usuário cadastrado (opcional)
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+  
+  const userForm = async (e) => {
     e.preventDefault();
   
     try {
@@ -54,19 +74,26 @@ const Registro = () => {
         throw new Error('Senhas diferentes ou campos vazios!');
       }
   
-      setUser([...user, {
-        username:userRegistro,
-        password:passwordRegistro
-        }]);
+      // Criar o objeto com os dados do usuário a serem cadastrados
+      const userData = {
+        username: userRegistro,
+        email: userEmail,
+        password: passwordRegistro,
+      };
+  
+      await registrarUsuario(userData); // Fazer o POST para o servidor
+  
+      // Atualizar o estado local se necessário
+      setUser([...user, { username: userRegistro, password: passwordRegistro }]);
       navigate("/cadastrosucess");
-
     } catch (error) {
       setError(error.message);
       setTimeout(() => {
-        setError(null)
+        setError(null);
       }, 3000);
     }
   };
+  
   
   return (
     <div>
