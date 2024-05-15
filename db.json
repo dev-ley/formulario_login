@@ -3,8 +3,14 @@
     {
       "username": "Wesley",
       "email": "Ju@teste.com",
+      "password": "123",
+      "id": "39fd"
+    },
+    {
+      "id": "50f9",
+      "username": "Ley",
+      "email": "ley@123",
       "password": "123"
     }
-
   ]
 }
