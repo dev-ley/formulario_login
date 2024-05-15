@@ -77,7 +77,7 @@ const FormularioLogin = () => {
              </ContainerFlex>
                 <InputButton  type='submit' texto='Login'/>
              <P>Nao tem uma conta? <LinkStyled to="/registro">Registrar</LinkStyled></P>
-        
+
          </Form>
     </div>
   )

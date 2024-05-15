@@ -9,7 +9,7 @@ export const UserProvider = ({children}) => {
     const [user, setUser] = useState([])
 
 
-    fetch('https://json-server-vercel-liard-chi.vercel.app/Usuarios',{ 
+    fetch('http://localhost:4000/Usuarios',{ 
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
