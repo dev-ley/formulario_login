@@ -48,7 +48,7 @@ const Registro = () => {
 
   const registrarUsuario = async (userData) => {
     try {
-      const response = await fetch('http://localhost:4000/Usuarios', {
+      const response = await fetch('https://json-server-vercel-liard-chi.vercel.app/Usuarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
